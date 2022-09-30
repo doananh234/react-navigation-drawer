@@ -56,6 +56,8 @@ type State = {
   drawerWidth: number;
 };
 
+let dimensionHandler1:any=null;
+
 /**
  * Component that renders the drawer.
  */
@@ -90,7 +92,7 @@ export default class DrawerView extends React.PureComponent<Props, State> {
       this.handleDrawerOpen();
     }
 
-    Dimensions.addEventListener('change', this.updateWidth);
+    dimensionHandler1 = Dimensions.addEventListener('change', this.updateWidth);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -107,7 +109,7 @@ export default class DrawerView extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    Dimensions.removeEventListener('change', this.updateWidth);
+    dimensionHandler1.remove()
   }
 
   context!: React.ContextType<typeof ThemeContext>;
